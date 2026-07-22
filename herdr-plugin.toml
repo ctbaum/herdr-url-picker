@@ -1,0 +1,30 @@
+id = "url-picker"
+name = "URL Picker"
+version = "0.1.0"
+min_herdr_version = "0.7.4"
+description = "Pick a URL printed in the current pane with fzf and open it in the default browser."
+platforms = ["linux", "macos"]
+
+# Bind this to a key in your herdr config, e.g. `<prefix>u`:
+#
+#   [[keys.command]]
+#   key = "prefix+u"
+#   type = "plugin_action"
+#   command = "url-picker.pick"
+#   description = "pick a url"
+#
+# The action captures the pane you invoked from and opens the picker popup.
+[[actions]]
+id = "pick"
+title = "Pick a URL from the pane"
+command = ["./pick.sh"]
+
+# The interactive fzf picker. A popup is session-modal and, unlike an action,
+# runs on a real PTY so fzf can draw and read keystrokes.
+[[panes]]
+id = "picker"
+title = "URL Picker"
+placement = "popup"
+width = "70%"
+height = "60%"
+command = ["./picker.sh"]
